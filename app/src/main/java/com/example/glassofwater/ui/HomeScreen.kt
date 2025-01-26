@@ -1,10 +1,12 @@
 package com.example.glassofwater.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,14 +17,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.glassofwater.ShortcutMoshi
+import com.example.glassofwater.utils.fetchData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.example.glassofwater.utils.fetchData
 
 @Composable
 fun HomeScreen() {
     val (shortcutsList, setShortcutsList) = remember { mutableStateOf<List<ShortcutMoshi>?>(null) }
+    val (currentShortcutClicked, setCurrentShortcutClicked) = remember {
+        mutableStateOf<ShortcutMoshi?>(
+            null
+        )
+    }
 
     LaunchedEffect(Unit) {
         val result = runCatching {
@@ -44,23 +51,38 @@ fun HomeScreen() {
             println("Failed fetching or Moshi: $fail")
         }
     }
+
+    if (currentShortcutClicked != null) {
+        return Box(modifier = Modifier.padding(16.dp)) {
+            Column {
+                Text(text = "How to remember: ${currentShortcutClicked.howToRemember}")
+                Text(text = "Keyboard combination: ${currentShortcutClicked.shortcut}")
+                Text(text = "Editors available: ${currentShortcutClicked.editorsUsing}")
+                Button(onClick = { setCurrentShortcutClicked(null) }) { Text(text = "Click") }
+            }
+        }
+    }
+
     if (shortcutsList != null) {
-        return LazyColumn(modifier = Modifier.padding(16.dp)) {
+        return Column(modifier = Modifier.padding(16.dp)) {
             shortcutsList.forEach { shortcut ->
-                item {
-                    Text(
-                        text = shortcut.shortDescription,
-                        color = Color.Blue,
-                        modifier = Modifier
-                            .padding(8.dp)
-                    )
-                }
+                Text(
+                    text = shortcut.shortDescription,
+                    color = Color.Blue,
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .clickable {
+                            setCurrentShortcutClicked(shortcut)
+                        }
+                )
             }
         }
     } else {
-        return Box(modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color.LightGray)) {
+        return Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = Color.LightGray)
+        ) {
             return Text(
                 modifier = Modifier.align(Alignment.Center),
                 text = "Waiting for data..."
