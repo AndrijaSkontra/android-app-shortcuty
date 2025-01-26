@@ -1,4 +1,4 @@
-package com.example.glassofwater
+package com.example.glassofwater.rma.unizd.skontra
 
 data class ShortcutMoshi(
     val shortDescription: String,

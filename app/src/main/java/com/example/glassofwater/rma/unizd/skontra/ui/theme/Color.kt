@@ -1,4 +1,4 @@
-package com.example.glassofwater.ui.theme
+package com.example.glassofwater.rma.unizd.skontra.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
