@@ -1,4 +1,4 @@
-package com.example.glassofwater.rma.unizd.skontra.ui
+package org.rma.unizd.skontra.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,8 +20,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.glassofwater.R
-import com.example.glassofwater.rma.unizd.skontra.ShortcutMoshi
-import com.example.glassofwater.rma.unizd.skontra.utils.fetchData
+import org.rma.unizd.skontra.ShortcutMoshi
+import org.rma.unizd.skontra.utils.fetchData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

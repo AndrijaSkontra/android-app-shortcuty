@@ -1,4 +1,4 @@
-package com.example.glassofwater.rma.unizd.skontra.ui.theme
+package org.rma.unizd.skontra.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

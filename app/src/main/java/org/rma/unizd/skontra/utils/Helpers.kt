@@ -1,4 +1,4 @@
-package com.example.glassofwater.rma.unizd.skontra.utils
+package org.rma.unizd.skontra.utils
 
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get

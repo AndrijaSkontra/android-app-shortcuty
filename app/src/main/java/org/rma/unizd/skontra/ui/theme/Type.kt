@@ -1,4 +1,4 @@
-package com.example.glassofwater.rma.unizd.skontra.ui.theme
+package org.rma.unizd.skontra.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
